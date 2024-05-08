@@ -6,6 +6,10 @@ import { useState } from "react";
 
 function App() {
   const [isSideBar, setIsSideBar] = useState(false);
+  const [userTasks, setUserTasks] = useState([
+    { heading: "h1", tasks: ["hello", "world"] },
+    { heading: "h2", tasks: ["javascript", "react"] },
+  ]);
 
   function onNotesClickHandler() {
     console.log("click");
@@ -13,10 +17,20 @@ function App() {
     console.log(isSideBar);
   }
 
+  function addTaskHeading(head) {
+    setUserTasks((prevState) => [...prevState, { heading: head, tasks: [] }]);
+    console.log(userTasks);
+  }
+
   return (
     <>
       <Navbar onNotesClickHandler={onNotesClickHandler} />
-      <Sidebar isSideBar={isSideBar} onBackClickHandler={onNotesClickHandler} />
+      <Sidebar
+        isSideBar={isSideBar}
+        onBackClickHandler={onNotesClickHandler}
+        userTasks={userTasks}
+        addTaskHeading={addTaskHeading}
+      />
       <Taskbar />
     </>
   );
