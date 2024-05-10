@@ -8,6 +8,7 @@ export default function Sidebar({
   userTasks,
   addTaskHeading,
   editTaskHeading,
+  onSetCategory,
 }) {
   console.log(isSideBar);
   const [isDialogOpenForCreate, setIsDialogOpenForCreate] = useState(false);
@@ -39,7 +40,14 @@ export default function Sidebar({
           {userTasks.map((el) => {
             return (
               <div key={el.heading} className="flex justify-between text-white">
-                <p>{el.heading}</p>
+                <p
+                  onClick={() => {
+                    onSetCategory(el.heading);
+                    onBackClickHandler();
+                  }}
+                >
+                  {el.heading}
+                </p>
                 <div className="flex">
                   <p
                     className="mr-2"

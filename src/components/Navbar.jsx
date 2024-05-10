@@ -1,4 +1,4 @@
-export default function Navbar({ onNotesClickHandler }) {
+export default function Navbar({ onNotesClickHandler, category }) {
   return (
     <nav
       onClick={onNotesClickHandler}
@@ -6,7 +6,7 @@ export default function Navbar({ onNotesClickHandler }) {
     >
       <div className="flex justify-center items-center">
         <p className="absolute left-2">📓</p>
-        <h1>heading</h1>
+        <h1>{category}</h1>
       </div>
     </nav>
   );
