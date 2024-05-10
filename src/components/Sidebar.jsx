@@ -7,12 +7,24 @@ export default function Sidebar({
   onBackClickHandler,
   userTasks,
   addTaskHeading,
+  editTaskHeading,
 }) {
   console.log(isSideBar);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isDialogOpenForCreate, setIsDialogOpenForCreate] = useState(false);
+  const [isDialogOpenForEdit, setIsDialogOpenForEdit] = useState(false);
+  const [data, setData] = useState({});
 
   function onClickHandler() {
-    setIsDialogOpen((prevState) => !prevState);
+    setIsDialogOpenForCreate((prevState) => !prevState);
+  }
+
+  function onClickHandlerEdit(heading) {
+    setIsDialogOpenForEdit((prevState) => !prevState);
+    console.log(isDialogOpenForEdit);
+  }
+
+  function onSetData(heading) {
+    setData(heading);
   }
 
   return (
@@ -29,7 +41,15 @@ export default function Sidebar({
               <div key={el.heading} className="flex justify-between text-white">
                 <p>{el.heading}</p>
                 <div className="flex">
-                  <p className="mr-2">✍️</p>
+                  <p
+                    className="mr-2"
+                    onClick={() => {
+                      onClickHandlerEdit();
+                      onSetData(el.heading);
+                    }}
+                  >
+                    ✍️
+                  </p>
                   <p>✖️</p>
                 </div>
               </div>
@@ -39,9 +59,19 @@ export default function Sidebar({
       </dialog>
 
       <Dialog
-        isDialogOpen={isDialogOpen}
+        isDialogOpen={isDialogOpenForCreate}
         onClickHandler={onClickHandler}
-        addTaskHeading={addTaskHeading}
+        TaskHeading={addTaskHeading}
+        data=""
+        btn="Create"
+      />
+
+      <Dialog
+        isDialogOpen={isDialogOpenForEdit}
+        onClickHandler={onClickHandlerEdit}
+        TaskHeading={editTaskHeading}
+        data={data}
+        btn="Edit"
       />
     </>
   );

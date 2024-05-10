@@ -22,6 +22,13 @@ function App() {
     console.log(userTasks);
   }
 
+  function editTaskHeading(head, clickedHead) {
+    console.log(head);
+    console.log(clickedHead);
+
+    console.log("edit");
+  }
+
   return (
     <>
       <Navbar onNotesClickHandler={onNotesClickHandler} />
@@ -30,6 +37,7 @@ function App() {
         onBackClickHandler={onNotesClickHandler}
         userTasks={userTasks}
         addTaskHeading={addTaskHeading}
+        editTaskHeading={editTaskHeading}
       />
       <Taskbar />
     </>

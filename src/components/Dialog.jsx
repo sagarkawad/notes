@@ -3,7 +3,9 @@ import { useRef } from "react";
 export default function Dialog({
   isDialogOpen,
   onClickHandler,
-  addTaskHeading,
+  TaskHeading,
+  data,
+  btn,
 }) {
   let heading = useRef();
 
@@ -12,7 +14,12 @@ export default function Dialog({
       {isDialogOpen && (
         <section className="w-screen h-screen absolute flex flex-col justify-center items-center">
           <div className="p-10 border rounded">
-            <input type="text" className="mb-4" ref={heading} />
+            <input
+              type="text"
+              className="mb-4"
+              ref={heading}
+              placeholder={data}
+            />
             <div className="flex justify-between">
               <button
                 className="border pl-4 pr-4 rounded"
@@ -20,12 +27,12 @@ export default function Dialog({
                   if (heading.current.value.trim() == "") {
                     return;
                   }
-                  addTaskHeading(heading.current.value);
+                  TaskHeading(heading.current.value, data);
                   onClickHandler();
                   console.log(heading);
                 }}
               >
-                Create
+                {btn}
               </button>
               <button
                 className="border pl-4 pr-4 rounded"
