@@ -44,6 +44,29 @@ function App() {
     setCategory(title);
   }
 
+  function appendTask(title) {
+    console.log("appendtask");
+
+    if (title.trim() == "") {
+      return;
+    }
+
+    setUserTasks((prevUserTasks) => {
+      return prevUserTasks.map((taskGroup) => {
+        if (taskGroup.heading === category) {
+          taskGroup.tasks.map((el) => {
+            if (el === title) {
+              return;
+            }
+          });
+          return { ...taskGroup, tasks: [...taskGroup.tasks, title] };
+          console.log(taskGroup);
+        }
+        return taskGroup;
+      });
+    });
+  }
+
   return (
     <>
       <Navbar onNotesClickHandler={onNotesClickHandler} category={category} />
@@ -55,7 +78,11 @@ function App() {
         editTaskHeading={editTaskHeading}
         onSetCategory={onSetCategory}
       />
-      <Taskbar />
+      <Taskbar
+        userTasks={userTasks}
+        category={category}
+        appendTask={appendTask}
+      />
     </>
   );
 }
