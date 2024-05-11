@@ -20,7 +20,7 @@ export default function Dialog({
               type="text"
               className="mb-4 p-2"
               ref={heading}
-              placeholder={data}
+              placeholder={data || "Add a category"}
               maxLength="50"
               required
             />

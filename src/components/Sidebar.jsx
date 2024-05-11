@@ -78,7 +78,7 @@ export default function Sidebar({
         isDialogOpen={isDialogOpenForCreate}
         onClickHandler={onClickHandler}
         TaskHeading={addTaskHeading}
-        data=""
+        data={null}
         btn="Create"
       />
 
