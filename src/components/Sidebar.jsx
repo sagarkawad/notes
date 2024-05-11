@@ -77,6 +77,11 @@ export default function Sidebar({
                         // User clicked OK
                         // Perform deletion operation
                         deleteTaskHeading(el.heading);
+                        if (userTasks.length <= 1) {
+                          onSetCategory("Select a Category!");
+                        } else if (userTasks.length === 2) {
+                          onSetCategory(userTasks[0].heading);
+                        }
                       } else {
                         // User clicked Cancel or closed the dialog
                         // Do nothing or handle accordingly

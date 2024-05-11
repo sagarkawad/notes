@@ -109,8 +109,6 @@ function App() {
     console.log(userTasks);
   }
 
-  function onDeleteTaskHeading() {}
-
   function onSetCategory(title) {
     setCategory(title);
   }
