@@ -12,7 +12,9 @@ export default function Dialog({
   return (
     <>
       {isDialogOpen && (
-        <section className="w-screen h-screen absolute flex flex-col justify-center items-center">
+        <section
+          className={`w-screen h-screen absolute flex flex-col justify-center items-center transition`}
+        >
           <div className="p-10 border rounded bg-slate-500">
             <input
               type="text"
@@ -30,8 +32,10 @@ export default function Dialog({
                     return;
                   }
 
-                  if (title.current.value.length > 50) {
-                    alert("Length limit exceeded. Length should be <= 50");
+                  if (heading.current.value.length > 20) {
+                    alert(
+                      `Length of the input = ${heading.current.value.length}. Length should be <= 20`
+                    );
                     return;
                   }
 

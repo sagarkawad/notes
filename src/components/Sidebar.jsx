@@ -31,10 +31,16 @@ export default function Sidebar({
 
   return (
     <>
-      <dialog open={isSideBar} className="bg-red-400 h-screen w-48 p-4 border">
-        <section className="flex justify-around mb-4">
-          <h1 className="text-white">New category</h1>
-          <p onClick={onClickHandler}>📝</p>
+      <dialog
+        open={true}
+        className={`bg-red-400 h-screen min-w-28 max-w-58 p-4 border-r transition-all ${
+          isSideBar ? "translate-x-0" : "-translate-x-80"
+        }`}
+      >
+        <section className="flex justify-between mb-4 transition-transform">
+          <h1 onClick={onClickHandler} className="text-white">
+            New category 📝
+          </h1>
           <p onClick={onBackClickHandler}>⬅️</p>
         </section>
         <section>
@@ -42,6 +48,7 @@ export default function Sidebar({
             return (
               <div key={el.heading} className="flex justify-between text-white">
                 <p
+                  className="mr-4"
                   onClick={() => {
                     onSetCategory(el.heading);
                     onBackClickHandler();

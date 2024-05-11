@@ -21,8 +21,10 @@ export default function Taskbar({
         <button
           className="p-2 bg-red-400"
           onClick={() => {
-            if (title.current.value.length > 50) {
-              alert("Length limit exceeded. Length should be <= 50");
+            if (title.current.value.length > 20) {
+              alert(
+                `Length of the input = ${title.current.value.length}. Length should be <= 20`
+              );
               return;
             }
 
