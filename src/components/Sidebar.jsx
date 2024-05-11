@@ -79,8 +79,9 @@ export default function Sidebar({
                         deleteTaskHeading(el.heading);
                         if (userTasks.length <= 1) {
                           onSetCategory("Select a Category!");
-                        } else if (userTasks.length === 2) {
-                          onSetCategory(userTasks[0].heading);
+                        }
+                        if (category === el.heading) {
+                          onSetCategory("Select a Category!");
                         }
                       } else {
                         // User clicked Cancel or closed the dialog

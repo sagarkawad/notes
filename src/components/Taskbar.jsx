@@ -18,6 +18,7 @@ export default function Taskbar({
           ref={title}
           maxLength="50"
           required
+          disabled={category === "Select a Category!"}
         />
         <button
           className="p-2 bg-red-400"
