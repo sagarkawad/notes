@@ -105,6 +105,7 @@ export default function Sidebar({
         onClickHandler={onClickHandlerEdit}
         TaskHeading={editTaskHeading}
         data={data}
+        onSetCategory={onSetCategory}
         btn="Edit"
       />
     </>

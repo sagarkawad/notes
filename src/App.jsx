@@ -72,8 +72,6 @@ function App() {
         );
       });
     });
-
-    setCategory("Select a Category!");
   }
 
   function editTaskHeading(head, clickedHead) {

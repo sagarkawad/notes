@@ -5,6 +5,7 @@ export default function Dialog({
   onClickHandler,
   TaskHeading,
   data,
+  onSetCategory,
   btn,
 }) {
   let heading = useRef();
@@ -40,6 +41,10 @@ export default function Dialog({
                   }
 
                   let th = TaskHeading(heading.current.value.trim(), data);
+
+                  if (btn === "Edit") {
+                    onSetCategory("Select a Category!");
+                  }
 
                   if (th) {
                     onClickHandler();
