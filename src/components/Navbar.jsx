@@ -5,7 +5,7 @@ export default function Navbar({ onNotesClickHandler, category }) {
         <p className="absolute left-2" onClick={onNotesClickHandler}>
           📓
         </p>
-        <h1>{category}</h1>
+        <h1 className="text-white">{category}</h1>
       </div>
     </nav>
   );

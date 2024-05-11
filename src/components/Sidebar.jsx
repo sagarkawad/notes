@@ -31,7 +31,7 @@ export default function Sidebar({
 
   return (
     <>
-      <dialog open={isSideBar} className="bg-red-400 h-screen w-48 p-4">
+      <dialog open={isSideBar} className="bg-red-400 h-screen w-48 p-4 border">
         <section className="flex justify-around mb-4">
           <h1 className="text-white">New category</h1>
           <p onClick={onClickHandler}>📝</p>

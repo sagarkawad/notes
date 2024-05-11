@@ -13,7 +13,7 @@ export default function Dialog({
     <>
       {isDialogOpen && (
         <section className="w-screen h-screen absolute flex flex-col justify-center items-center">
-          <div className="p-10 border rounded">
+          <div className="p-10 border rounded bg-slate-500">
             <input
               type="text"
               className="mb-4 p-2"
@@ -24,11 +24,17 @@ export default function Dialog({
             />
             <div className="flex justify-between">
               <button
-                className="border pl-4 pr-4 rounded"
+                className="border pl-4 pr-4 rounded bg-red-400 text-white"
                 onClick={() => {
                   if (heading.current.value.trim() == "") {
                     return;
                   }
+
+                  if (title.current.value.length > 50) {
+                    alert("Length limit exceeded. Length should be <= 50");
+                    return;
+                  }
+
                   let th = TaskHeading(heading.current.value.trim(), data);
 
                   if (th) {
@@ -41,7 +47,7 @@ export default function Dialog({
                 {btn}
               </button>
               <button
-                className="border pl-4 pr-4 rounded"
+                className="border pl-4 pr-4 rounded bg-red-400 text-white"
                 onClick={onClickHandler}
               >
                 Cancel
