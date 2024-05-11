@@ -11,12 +11,23 @@ export default function Taskbar({
   return (
     <section className="w-screen h-screen bg-slate-500 flex flex-col justify-center items-center">
       <div>
-        <input type="text" className="mb-4 p-2" ref={title} />
+        <input
+          type="text"
+          className="mb-4 p-2"
+          ref={title}
+          maxLength="50"
+          required
+        />
         <button
           className="p-2 bg-red-400"
           onClick={() => {
-            appendTask(title.current.value);
-            title.current.value = "";
+            let ap = appendTask(title.current.value.trim());
+
+            console.log("ap", ap);
+
+            if (ap) {
+              title.current.value = "";
+            }
           }}
         >
           ➕

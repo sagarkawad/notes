@@ -11,8 +11,9 @@ export default function Sidebar({
   onSetCategory,
 }) {
   console.log(isSideBar);
-  const [isDialogOpenForCreate, setIsDialogOpenForCreate] = useState(false);
+
   const [isDialogOpenForEdit, setIsDialogOpenForEdit] = useState(false);
+  const [isDialogOpenForCreate, setIsDialogOpenForCreate] = useState(false);
   const [data, setData] = useState({});
 
   function onClickHandler() {

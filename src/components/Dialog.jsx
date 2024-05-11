@@ -16,9 +16,11 @@ export default function Dialog({
           <div className="p-10 border rounded">
             <input
               type="text"
-              className="mb-4"
+              className="mb-4 p-2"
               ref={heading}
               placeholder={data}
+              maxLength="50"
+              required
             />
             <div className="flex justify-between">
               <button
@@ -27,8 +29,12 @@ export default function Dialog({
                   if (heading.current.value.trim() == "") {
                     return;
                   }
-                  TaskHeading(heading.current.value, data);
-                  onClickHandler();
+                  let th = TaskHeading(heading.current.value.trim(), data);
+
+                  if (th) {
+                    onClickHandler();
+                  }
+
                   console.log(heading);
                 }}
               >

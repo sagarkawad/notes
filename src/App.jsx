@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 
 function App() {
   // Load state from localStorage on component mount
+
   const initialState = JSON.parse(localStorage.getItem("userTasks")) || [
     {
       heading: "h1",
@@ -46,7 +47,19 @@ function App() {
   }
 
   function addTaskHeading(head) {
+    let duplicate = false;
+    userTasks.map((el) => {
+      if (el.heading.toLowerCase() === head.trim().toLowerCase()) {
+        duplicate = true;
+        return;
+      }
+    });
+    if (duplicate) {
+      alert("Heading already exists!");
+      return false;
+    }
     setUserTasks((prevState) => [...prevState, { heading: head, tasks: [] }]);
+    return true;
     console.log(userTasks);
   }
 
@@ -54,6 +67,18 @@ function App() {
     console.log(head);
     console.log(clickedHead);
     console.log("edit");
+
+    let duplicate = false;
+    userTasks.map((el) => {
+      if (el.heading.toLowerCase() === head.trim().toLowerCase()) {
+        duplicate = true;
+        return;
+      }
+    });
+    if (duplicate) {
+      alert("Heading already exists!");
+      return false;
+    }
 
     setUserTasks((prevUserTasks) => {
       return prevUserTasks.map((taskGroup) => {
@@ -63,6 +88,8 @@ function App() {
         return taskGroup;
       });
     });
+
+    return true;
 
     console.log(userTasks);
   }
@@ -78,6 +105,24 @@ function App() {
       return;
     }
 
+    let duplicate = false;
+
+    userTasks.map((taskGroup) => {
+      if (taskGroup.heading === category) {
+        taskGroup.tasks.map((el) => {
+          if (el.t.toLowerCase() === title.trim().toLowerCase()) {
+            duplicate = true;
+            return;
+          }
+        });
+      }
+    });
+
+    if (duplicate) {
+      alert("Task already exists!");
+      return false;
+    }
+
     setUserTasks((prevUserTasks) => {
       return prevUserTasks.map((taskGroup) => {
         if (taskGroup.heading === category) {
@@ -90,6 +135,8 @@ function App() {
         return taskGroup;
       });
     });
+
+    return true;
   }
 
   function strikeThrough(title) {
@@ -118,6 +165,10 @@ function App() {
         return taskGroup;
       });
     });
+  }
+
+  function onTaskDeleteHandler(title) {
+    console.log("onTaskDeleteHandler");
   }
 
   return (
