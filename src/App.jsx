@@ -7,10 +7,22 @@ import { useState } from "react";
 function App() {
   const [isSideBar, setIsSideBar] = useState(false);
   const [userTasks, setUserTasks] = useState([
-    { heading: "h1", tasks: ["hello", "world"] },
-    { heading: "h2", tasks: ["javascript", "react"] },
+    {
+      heading: "h1",
+      tasks: [
+        { t: "hello", completed: false },
+        { t: "world", completed: true },
+      ],
+    },
+    {
+      heading: "h2",
+      tasks: [
+        { t: "javascript", completed: false },
+        { t: "react", completed: true },
+      ],
+    },
   ]);
-  const [category, setCategory] = useState("select a category");
+  const [category, setCategory] = useState("Select a Category");
 
   function onNotesClickHandler() {
     console.log("click");
@@ -54,13 +66,39 @@ function App() {
     setUserTasks((prevUserTasks) => {
       return prevUserTasks.map((taskGroup) => {
         if (taskGroup.heading === category) {
-          taskGroup.tasks.map((el) => {
-            if (el === title) {
-              return;
-            }
-          });
-          return { ...taskGroup, tasks: [...taskGroup.tasks, title] };
+          return {
+            ...taskGroup,
+            tasks: [...taskGroup.tasks, { t: title, completed: false }],
+          };
           console.log(taskGroup);
+        }
+        return taskGroup;
+      });
+    });
+  }
+
+  function strikeThrough(title) {
+    console.log("strikeThrough");
+
+    setUserTasks((prevUserTasks) => {
+      return prevUserTasks.map((taskGroup) => {
+        if (taskGroup.heading === category) {
+          const updatedTasks = taskGroup.tasks.map((el) => {
+            if (el.t === title) {
+              console.log(el.t);
+              return {
+                ...el,
+                completed: !el.completed,
+              };
+            }
+            return el;
+          });
+
+          console.log(taskGroup);
+          return {
+            ...taskGroup,
+            tasks: updatedTasks,
+          };
         }
         return taskGroup;
       });
@@ -82,6 +120,7 @@ function App() {
         userTasks={userTasks}
         category={category}
         appendTask={appendTask}
+        strikeThrough={strikeThrough}
       />
     </>
   );

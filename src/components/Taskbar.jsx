@@ -1,7 +1,12 @@
 import Tasks from "./Tasks";
 import { useRef } from "react";
 
-export default function Taskbar({ userTasks, category, appendTask }) {
+export default function Taskbar({
+  userTasks,
+  category,
+  appendTask,
+  strikeThrough,
+}) {
   let title = useRef();
   return (
     <section className="w-screen h-screen bg-slate-500 flex flex-col justify-center items-center">
@@ -17,7 +22,11 @@ export default function Taskbar({ userTasks, category, appendTask }) {
           ➕
         </button>
       </div>
-      <Tasks userTasks={userTasks} category={category} />
+      <Tasks
+        userTasks={userTasks}
+        category={category}
+        strikeThrough={strikeThrough}
+      />
     </section>
   );
 }
