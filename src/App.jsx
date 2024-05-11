@@ -73,10 +73,7 @@ function App() {
       });
     });
 
-    console.log("utL", userTasks.length);
-    if (userTasks.length <= 1) {
-      setCategory("Select a Category!");
-    }
+    setCategory("Select a Category!");
   }
 
   function editTaskHeading(head, clickedHead) {
