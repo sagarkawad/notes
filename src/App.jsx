@@ -24,7 +24,7 @@ function App() {
     },
   ];
 
-  const initialCategory =
+  let initialCategory =
     JSON.parse(localStorage.getItem("category")) || "Select a Category!";
 
   const [isSideBar, setIsSideBar] = useState(false);
@@ -63,6 +63,22 @@ function App() {
     console.log(userTasks);
   }
 
+  function deleteTaskHeading(headingToDelete) {
+    setUserTasks((prevState) => {
+      return prevState.filter((taskGroup) => {
+        return (
+          taskGroup.heading.toLowerCase() !==
+          headingToDelete.trim().toLowerCase()
+        );
+      });
+    });
+
+    console.log("utL", userTasks.length);
+    if (userTasks.length <= 1) {
+      setCategory("Select a Category!");
+    }
+  }
+
   function editTaskHeading(head, clickedHead) {
     console.log(head);
     console.log(clickedHead);
@@ -93,6 +109,8 @@ function App() {
 
     console.log(userTasks);
   }
+
+  function onDeleteTaskHeading() {}
 
   function onSetCategory(title) {
     setCategory(title);
@@ -169,6 +187,21 @@ function App() {
 
   function onTaskDeleteHandler(title) {
     console.log("onTaskDeleteHandler");
+
+    setUserTasks((prevUserTasks) => {
+      return prevUserTasks.map((taskGroup) => {
+        if (taskGroup.heading === category) {
+          const updatedTasks = taskGroup.tasks.filter((el) => el.t !== title);
+
+          console.log(taskGroup);
+          return {
+            ...taskGroup,
+            tasks: updatedTasks,
+          };
+        }
+        return taskGroup;
+      });
+    });
   }
 
   return (
@@ -181,12 +214,14 @@ function App() {
         addTaskHeading={addTaskHeading}
         editTaskHeading={editTaskHeading}
         onSetCategory={onSetCategory}
+        deleteTaskHeading={deleteTaskHeading}
       />
       <Taskbar
         userTasks={userTasks}
         category={category}
         appendTask={appendTask}
         strikeThrough={strikeThrough}
+        onTaskDeleteHandler={onTaskDeleteHandler}
       />
     </>
   );

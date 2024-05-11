@@ -9,6 +9,7 @@ export default function Sidebar({
   addTaskHeading,
   editTaskHeading,
   onSetCategory,
+  deleteTaskHeading,
 }) {
   console.log(isSideBar);
 
@@ -66,7 +67,24 @@ export default function Sidebar({
                   >
                     ✍️
                   </p>
-                  <p>✖️</p>
+                  <p
+                    onClick={() => {
+                      const result = confirm(
+                        "Are you sure you want to delete this category? It will delete all the tasks associated with it!"
+                      );
+                      if (result === true) {
+                        // User clicked OK
+                        // Perform deletion operation
+                        deleteTaskHeading(el.heading);
+                      } else {
+                        // User clicked Cancel or closed the dialog
+                        // Do nothing or handle accordingly
+                        console.log("cancelled");
+                      }
+                    }}
+                  >
+                    ✖️
+                  </p>
                 </div>
               </div>
             );

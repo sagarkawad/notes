@@ -6,6 +6,7 @@ export default function Taskbar({
   category,
   appendTask,
   strikeThrough,
+  onTaskDeleteHandler,
 }) {
   let title = useRef();
   return (
@@ -44,6 +45,7 @@ export default function Taskbar({
         userTasks={userTasks}
         category={category}
         strikeThrough={strikeThrough}
+        onTaskDeleteHandler={onTaskDeleteHandler}
       />
     </section>
   );

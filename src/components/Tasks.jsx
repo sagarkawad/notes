@@ -1,4 +1,9 @@
-export default function Tasks({ userTasks, category, strikeThrough }) {
+export default function Tasks({
+  userTasks,
+  category,
+  strikeThrough,
+  onTaskDeleteHandler,
+}) {
   return (
     <section>
       <ol className="list-decimal">
@@ -24,7 +29,13 @@ export default function Tasks({ userTasks, category, strikeThrough }) {
                     >
                       ☑️
                     </button>
-                    <button>❎</button>
+                    <button
+                      onClick={() => {
+                        onTaskDeleteHandler(task.t);
+                      }}
+                    >
+                      ❎
+                    </button>
                   </div>
                 </div>
               );
