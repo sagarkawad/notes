@@ -7,3 +7,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Hide browser UI when added to homescreen */
+@media (display-mode: standalone) {
+  /* Hide browser address bar */
+  html {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
