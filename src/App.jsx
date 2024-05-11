@@ -2,11 +2,11 @@ import Sidebar from "./components/Sidebar.jsx";
 import Taskbar from "./components/Taskbar.jsx";
 import Navbar from "./components/Navbar.jsx";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
-  const [isSideBar, setIsSideBar] = useState(false);
-  const [userTasks, setUserTasks] = useState([
+  // Load state from localStorage on component mount
+  const initialState = JSON.parse(localStorage.getItem("userTasks")) || [
     {
       heading: "h1",
       tasks: [
@@ -21,8 +21,23 @@ function App() {
         { t: "react", completed: true },
       ],
     },
-  ]);
-  const [category, setCategory] = useState("Select a Category");
+  ];
+
+  const initialCategory =
+    JSON.parse(localStorage.getItem("category")) || "Select a Category!";
+
+  const [isSideBar, setIsSideBar] = useState(false);
+  const [userTasks, setUserTasks] = useState(initialState);
+  const [category, setCategory] = useState(initialCategory);
+
+  // Save state to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("userTasks", JSON.stringify(userTasks));
+  }, [userTasks]);
+
+  useEffect(() => {
+    localStorage.setItem("category", JSON.stringify(category));
+  }, [category]);
 
   function onNotesClickHandler() {
     console.log("click");
