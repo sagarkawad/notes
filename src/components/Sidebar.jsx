@@ -10,6 +10,7 @@ export default function Sidebar({
   editTaskHeading,
   onSetCategory,
   deleteTaskHeading,
+  category,
 }) {
   console.log(isSideBar);
 
@@ -106,6 +107,7 @@ export default function Sidebar({
         TaskHeading={editTaskHeading}
         data={data}
         onSetCategory={onSetCategory}
+        category={category}
         btn="Edit"
       />
     </>

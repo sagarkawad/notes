@@ -100,6 +100,10 @@ function App() {
       });
     });
 
+    // if (clickedHead === category) {
+    //   setCategory("Select a Category!");
+    // }
+
     return true;
 
     console.log(userTasks);
@@ -210,6 +214,7 @@ function App() {
         editTaskHeading={editTaskHeading}
         onSetCategory={onSetCategory}
         deleteTaskHeading={deleteTaskHeading}
+        category={category}
       />
       <Taskbar
         userTasks={userTasks}
